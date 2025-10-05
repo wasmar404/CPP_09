@@ -6,22 +6,30 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:49:47 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/05 19:16:10 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/05 21:04:00 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
-bool parse_input(char ** av);// std::vector<int>& vec
+bool parse_input(int ac,char ** av,std::vector<int>& input);// std::vector<int>& vec
 
 int main(int argc,char **argv)
 {
-    if (argc != 2)
+	std::vector<int> input;
+    if (argc < 2)
     {
         std::cerr << "Invalid number of argument" << std::endl;
         return(1);
     }
-    if(parse_input(argv) == false)
+    if(parse_input(argc,argv,input) == false)
+	{
         printf("error");
+	}
+	
+    for (size_t i = 0; i < input.size(); i++)
+    {
+        printf("%d\n", input[i]);
+    }
     return(0); 
 }
 bool check_duplicate(const std::vector<int> &x)
@@ -41,32 +49,43 @@ bool check_duplicate(const std::vector<int> &x)
     }
     return(true);
 }
-bool parse_input(char ** av)
+bool check_if_digit(char *av)
+{
+	int i = 0;
+	        while (av[i])
+        {
+            if (!std::isdigit(static_cast<unsigned char>(av[i])) &&
+                !std::isspace(static_cast<unsigned char>(av[i])))
+                return false;
+            i++;
+        }
+		return(true);
+}
+bool parse_input(int ac, char **av,std::vector<int>  &input)
 {
     std::vector<int> temp;
-    long long num;
-    std::stringstream x(av[1]);
-    int i = 0;
-    while(av[1][i])
+	long num;
+    int j = 1;
+	
+    while ( j < ac)  
     {
-        if(!std::isdigit(static_cast<unsigned char>(av[1][i])) && !std::isspace(static_cast<unsigned char>(av[1][i])))
-            return false;
-        i++;
+        std::stringstream ss(av[j]);
+		if(check_if_digit(av[j]) == false)
+		{
+			return false;
+		}
+        while (ss >> num)
+        {
+            if (num > 2147483647)
+                return false;
+            temp.push_back(static_cast<int>(num));
+        }
+		j++;
     }
-	/*
-		➜  ex02 git:(main) ✗ ./PmergeMe "3333 0-"                                                                  
-		➜  ex02 git:(main) ✗ ./PmergeMe "3333 0- "
-			error%                                                                                  
-		➜  ex02 git:(main) ✗ 
-	*/
-    while (x >> num) 
-    {
-        if (num < 0 || num > 2147483647)
-            return false;
-        temp.push_back(static_cast<int>(num));
-    }
+	input.insert(input.begin(),temp.begin(),temp.end());
     if (!check_duplicate(temp))
         return false;
     return true;
 }
+
 			
