@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:31:24 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/08 06:49:32 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/08 09:16:59 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,21 @@
 #include <stdio.h>
 #include <cctype>
 #include <deque>
+#include <utility> //std::pair
 
 class PmergeMe
 {
 	  private:
         std::vector<int>	vector;
-		    std::deque<int>		deque;   
+		std::deque<int>		deque;
+        int vector_comparisons;
+        // int deque_comparisons;   
     public:
         void fill_vector_and_deque(std::vector<int> &input);
-        void debug_vecotr();
+        void debug_vector();
         void debug_deque();
+        void vector_recursive_sort();
+        void debug_pairs(std::vector<std::pair<int,int > > &pairs);
 };
 
 #endif

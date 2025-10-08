@@ -6,12 +6,12 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:49:47 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/07 21:12:07 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/08 07:30:24 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
-bool parse_input(int ac,char ** av,std::vector<int>& input);// std::vector<int>& vec
+bool parse_input(int ac,char ** av,std::vector<int>& input);
 
 int main(int argc,char **argv)
 {
@@ -26,7 +26,7 @@ int main(int argc,char **argv)
         printf("error");
 	
     pmerge.fill_vector_and_deque(input);
-    
+    pmerge.vector_recursive_sort();
     return(0); 
 }
 bool check_duplicate(const std::vector<int> &x)
