@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:49:47 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/08 07:30:24 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/11 20:16:22 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ int main(int argc,char **argv)
         printf("error");
 	
     pmerge.fill_vector_and_deque(input);
-    pmerge.vector_recursive_sort();
+    pmerge.vector_recursive_sort((pmerge.getVector()));
     return(0); 
 }
 bool check_duplicate(const std::vector<int> &x)
 {
-    size_t i = 0;//main.cpp:30:14: error: comparison of integers of different signs: 'int' and 'std::vector::size_type' (aka 'unsigned long') [-Werror,-Wsign-compare]//   while (i < x.size())
+    size_t i = 0;
     size_t j = 0;
     while (i < x.size())
     {
