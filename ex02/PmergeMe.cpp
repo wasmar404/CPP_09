@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:31:30 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/17 19:28:54 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/17 20:21:10 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ std::vector<int> PmergeMe::vector_recursive_sort(std::vector<int> &vec)
     }
     if(odd != -1)
         sorted_pend.push_back(odd);
-    
-    return(main);
+    insert(sorted_pend,sorted_main);
+    return(sorted_main);
 }
 void debug_pairs(std::vector<std::pair<int,int> > &pairs)
 {
@@ -122,17 +122,20 @@ int calculate_jacobthal_num(int x)
     int prev_prev = 0;
     int prev = 1;
     int answer = 0;
-    int i = 0;
+    int i = 2;
     while(i <= x)
     {
-        answer = prev_prev + 2 * prev;
+        answer =  prev + 2 * prev_prev;
         prev_prev = prev;
         prev = answer;
+        i++;
     }
     return(answer);
 }
-size_t PmergeMe::binary_search_vec(std::vector<int> vec, int value, size_t high)
+size_t PmergeMe::binary_search_vec(std::vector<int> &vec, int value, size_t high)
 {
+        if(vec.empty())
+        return 0;
     size_t low = 0;
     size_t mid = 0;
     if(high >=  vec.size())
@@ -148,6 +151,31 @@ size_t PmergeMe::binary_search_vec(std::vector<int> vec, int value, size_t high)
     }
     return (low);
 }
+// size_t PmergeMe::binary_search_vec(std::vector<int> &vec, int value, size_t high)
+// {
+//     if(vec.empty())
+//         return 0;
+    
+//     if(high >= vec.size())
+//         high = vec.size() - 1;
+    
+//     int low = 0;
+//     int hi = (int)high;  // Convert to signed int
+//     int mid;
+    
+//     while(low <= hi)
+//     {
+//         vector_comparisons++;
+//         mid = low + (hi - low) / 2;
+        
+//         if(vec[mid] < value)
+//             low = mid + 1;
+//         else
+//             hi = mid - 1;
+//     }
+//     return (size_t)low;
+// }
+
 bool is_in_vector(std::vector<int>& vec, int value)
 {
     for (size_t i = 0; i < vec.size(); i++)
@@ -157,7 +185,7 @@ bool is_in_vector(std::vector<int>& vec, int value)
     }
     return false;
 }
-void PmergeMe::insert(std::vector<int> pend_vec,std::vector<int> main_vec)
+void PmergeMe::insert(std::vector<int>& pend_vec,std::vector<int> &main_vec)
 {
     std::vector<int> j_seq;
     std::vector<int> order;
@@ -196,5 +224,31 @@ void PmergeMe::insert(std::vector<int> pend_vec,std::vector<int> main_vec)
             order.push_back(i);
         i--;
     }
-    (void)main_vec;
+    main_vec.insert(main_vec.begin(),pend_vec[0]);
+    i = 0;
+    size_t high = 3;
+    int index = 0;
+    size_t pos;
+    while(i < order.size())
+    {
+        if(order[i] == 1)
+        {
+            i++;
+            continue;
+        }
+        if(i > 0 && order[i] > order[i-1])
+            high = 2 * high + 1;
+        
+        index = order[i]-1;
+        if(high-1 > main_vec.size())
+        {
+             pos = binary_search_vec(main_vec, pend_vec[index], main_vec.size());
+        }
+        else
+        {
+             pos = binary_search_vec(main_vec, pend_vec[index], high-1);
+        }
+        main_vec.insert(main_vec.begin() + pos, pend_vec[index]);
+        i++;
+    }
 }

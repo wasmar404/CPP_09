@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:31:24 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/17 18:57:46 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/17 20:47:27 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <cctype>
 #include <deque>
 #include <utility> //std::pair
-
+//Orthodoc Canonical Form !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 class PmergeMe
 {
 	  private:
@@ -33,7 +33,10 @@ class PmergeMe
         // void debug_deque();
         std::vector<int>  vector_recursive_sort(std::vector<int> &vec);
          std::vector<int>& getVector() { return vector; }
-        size_t binary_search_vec(std::vector<int> vec, int value, size_t high);void insert(std::vector<int> pend_vec,std::vector<int> main_vec);
+         int getvector_comparisons(){return vector_comparisons;}
+         void setvec(){ vector_comparisons = 0;}
+        size_t binary_search_vec(std::vector<int> &vec, int value, size_t high);
+        void insert(std::vector<int> &pend_vec,std::vector<int> &main_vec);
 
         };
 void debug_vector(std::vector<int> debug);

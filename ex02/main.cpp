@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:49:47 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/11 20:16:22 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/17 20:16:35 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ bool parse_input(int ac,char ** av,std::vector<int>& input);
 int main(int argc,char **argv)
 {
     PmergeMe pmerge;
+    pmerge.setvec();
 	std::vector<int> input;
     if (argc < 2)
     {
@@ -23,10 +24,14 @@ int main(int argc,char **argv)
         return(1);
     }
     if(parse_input(argc,argv,input) == false)
-        printf("error");
+    {
+        return 1;
+    }
 	
     pmerge.fill_vector_and_deque(input);
-    pmerge.vector_recursive_sort((pmerge.getVector()));
+ std::vector<int> sortedd =   pmerge.vector_recursive_sort((pmerge.getVector()));
+ debug_vector(sortedd);
+ printf("%d",pmerge.getvector_comparisons());
     return(0); 
 }
 bool check_duplicate(const std::vector<int> &x)
