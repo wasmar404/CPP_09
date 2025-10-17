@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:31:30 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/15 11:45:21 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/17 15:04:03 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,17 @@ void debug_vector(std::vector<int> debug)
 std::vector<int> PmergeMe::vector_recursive_sort(std::vector<int> &vec)
 {
     size_t i = 0;
+    size_t j = 0;
     int odd = -1;
     size_t vector_size = 0;
-    std::vector<ii>  pairs;
+    std::vector<std::pair<int,int> >  pairs;
     std::vector<int> main;
     std::vector<int> pend;
+    std::vector<int> sorted_pend;
+    std::vector<int> sorted_main;    
     if(vec.size() <= 1)
-         return;
-    if(vector.size() % 2 == 0)
+         return vec;
+    if(vec.size() % 2 == 0)
         vector_size = vec.size();
     else 
         vector_size = vec.size() - 1;
@@ -65,7 +68,7 @@ std::vector<int> PmergeMe::vector_recursive_sort(std::vector<int> &vec)
         int a = vec[i];
         int b = vec[i+1];
         vector_comparisons++;
-        if(a < b)
+        if(a > b)
             pairs.push_back(std::make_pair(a,b));
         else
             pairs.push_back(std::make_pair(b,a));
@@ -80,8 +83,22 @@ std::vector<int> PmergeMe::vector_recursive_sort(std::vector<int> &vec)
         pend.push_back(pairs[i].second);
         i++;
     }
-    main = vector_recursive_sort(main);
-    
+    sorted_main = vector_recursive_sort(main);
+    i = 0;
+    while(i < sorted_main.size())
+    {
+        j = 0;
+        while(j < main.size())
+        {
+            if(main[j] ==  sorted_main[i])
+            {
+                sorted_pend.push_back(pend[j]);
+                break;
+            }
+            j++;
+        }
+        i++;
+    }
     return(main);
 }
 void debug_pairs(std::vector<std::pair<int,int> > &pairs)

@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:31:24 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/15 11:44:30 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/17 15:03:52 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 #include <cctype>
 #include <deque>
 #include <utility> //std::pair
-
-typedef std::pair<int,int> ii;
 
 class PmergeMe
 {
