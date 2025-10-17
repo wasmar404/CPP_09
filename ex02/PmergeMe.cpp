@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:31:30 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/17 15:04:03 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/17 17:49:32 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,9 @@ std::vector<int> PmergeMe::vector_recursive_sort(std::vector<int> &vec)
         }
         i++;
     }
+    if(odd != -1)
+        sorted_pend.push_back(odd);
+    
     return(main);
 }
 void debug_pairs(std::vector<std::pair<int,int> > &pairs)
@@ -109,4 +112,22 @@ void debug_pairs(std::vector<std::pair<int,int> > &pairs)
         printf("(%d,%d) \n",pairs[i].first,pairs[i].second);
         i++;
     } 
+}
+int calculate_jacobthal_num(int x)
+{
+    if(x == 0)
+        return (0);
+    if(x == 1)
+        return(1);
+    int prev_prev = 0;
+    int prev = 1;
+    int answer = 0;
+    int i = 0;
+    while(i <= x)
+    {
+        answer = prev_prev + 2 * prev;
+        prev_prev = prev;
+        prev = answer;
+    }
+    return(answer);
 }
