@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:31:30 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/17 17:49:32 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/17 18:23:16 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,4 +130,21 @@ int calculate_jacobthal_num(int x)
         prev = answer;
     }
     return(answer);
+}
+size_t PmergeMe::binary_search_vec(std::vector<int> vec, int value, size_t high)
+{
+    size_t low = 0;
+    size_t mid = 0;
+    if(high >=  vec.size())
+        high = vec.size() -1;
+    while(low <= high)
+    {
+        vector_comparisons++;
+        mid = low + (high - low) / 2;
+        if(vec[mid] < value)
+            low = mid + 1;
+        else
+            high = mid -1;
+    }
+    return (low);
 }
