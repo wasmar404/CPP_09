@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:31:30 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/11 20:15:34 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/15 11:45:21 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void debug_vector(std::vector<int> debug)
         printf("%d\n",debug[j]);
     }  
 }
-void PmergeMe::vector_recursive_sort(std::vector<int> &vec)
+std::vector<int> PmergeMe::vector_recursive_sort(std::vector<int> &vec)
 {
     size_t i = 0;
     int odd = -1;
@@ -80,8 +80,9 @@ void PmergeMe::vector_recursive_sort(std::vector<int> &vec)
         pend.push_back(pairs[i].second);
         i++;
     }
-    vector_recursive_sort(main);
-
+    main = vector_recursive_sort(main);
+    
+    return(main);
 }
 void debug_pairs(std::vector<std::pair<int,int> > &pairs)
 {

@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:31:24 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/11 19:42:10 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/15 11:44:30 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ class PmergeMe
     public:
         void fill_vector_and_deque(std::vector<int> &input);
         // void debug_deque();
-        void vector_recursive_sort(std::vector<int> &vec);
+        std::vector<int>  vector_recursive_sort(std::vector<int> &vec);
          std::vector<int>& getVector() { return vector; }
 };
 void debug_vector(std::vector<int> debug);
