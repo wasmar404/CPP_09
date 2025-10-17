@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:31:30 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/17 18:23:16 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/17 19:28:54 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,4 +147,54 @@ size_t PmergeMe::binary_search_vec(std::vector<int> vec, int value, size_t high)
             high = mid -1;
     }
     return (low);
+}
+bool is_in_vector(std::vector<int>& vec, int value)
+{
+    for (size_t i = 0; i < vec.size(); i++)
+    {
+        if (vec[i] == value)
+            return true;
+    }
+    return false;
+}
+void PmergeMe::insert(std::vector<int> pend_vec,std::vector<int> main_vec)
+{
+    std::vector<int> j_seq;
+    std::vector<int> order;
+    size_t i = 3;
+    int x = 1;
+    size_t j_num;
+    
+    while (true)
+    {
+        j_num = calculate_jacobthal_num(i);
+        if (j_num > pend_vec.size())
+            break;
+        j_seq.push_back(j_num);
+        i++;
+    }
+    i = 0;
+    while(i < j_seq.size())
+    {
+        x = j_seq[i];
+        while(x > 1)
+        {
+            if(is_in_vector(order,x) ==  false )
+            {
+                order.push_back(x);
+            }
+            else
+                break;
+            x--;
+        }
+        i++;
+    }
+    i = pend_vec.size();
+    while (i > 0)
+    {
+        if (is_in_vector(order, i) == false)
+            order.push_back(i);
+        i--;
+    }
+    (void)main_vec;
 }

@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:31:24 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/17 18:22:52 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/17 18:57:46 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ class PmergeMe
         // void debug_deque();
         std::vector<int>  vector_recursive_sort(std::vector<int> &vec);
          std::vector<int>& getVector() { return vector; }
-        size_t binary_search_vec(std::vector<int> vec, int value, size_t high);
+        size_t binary_search_vec(std::vector<int> vec, int value, size_t high);void insert(std::vector<int> pend_vec,std::vector<int> main_vec);
 
         };
 void debug_vector(std::vector<int> debug);
