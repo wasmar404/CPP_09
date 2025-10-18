@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:31:30 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/17 20:21:10 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/18 15:08:05 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void PmergeMe::fill_vector_and_deque(std::vector<int> &temp)
         i++;
     }
 }
-// void PmergeMe::debug_deque()
-// {
-//      printf("----------Deque-------------\n");
-//     for(size_t j = 0;j < deque.size();j++)
-//     {
-//         printf("%d\n",deque[j]);
-//     }   
-// }
+void debug_deque(std::deque<int> debug)
+{
+    printf("----------Deque-------------\n");
+    for(size_t j = 0;j < debug.size();j++)
+    {
+        printf("%d\n",debug[j]);
+    }   
+}
 
 void debug_vector(std::vector<int> debug)
 {
@@ -132,13 +132,13 @@ int calculate_jacobthal_num(int x)
     }
     return(answer);
 }
-size_t PmergeMe::binary_search_vec(std::vector<int> &vec, int value, size_t high)
+int PmergeMe::binary_search_vec(std::vector<int> &vec, int value, int high)
 {
-        if(vec.empty())
+    if(vec.empty())
         return 0;
-    size_t low = 0;
-    size_t mid = 0;
-    if(high >=  vec.size())
+    int low = 0;
+    int mid = 0;
+    if(high >=  (int)vec.size())
         high = vec.size() -1;
     while(low <= high)
     {
@@ -151,30 +151,6 @@ size_t PmergeMe::binary_search_vec(std::vector<int> &vec, int value, size_t high
     }
     return (low);
 }
-// size_t PmergeMe::binary_search_vec(std::vector<int> &vec, int value, size_t high)
-// {
-//     if(vec.empty())
-//         return 0;
-    
-//     if(high >= vec.size())
-//         high = vec.size() - 1;
-    
-//     int low = 0;
-//     int hi = (int)high;  // Convert to signed int
-//     int mid;
-    
-//     while(low <= hi)
-//     {
-//         vector_comparisons++;
-//         mid = low + (hi - low) / 2;
-        
-//         if(vec[mid] < value)
-//             low = mid + 1;
-//         else
-//             hi = mid - 1;
-//     }
-//     return (size_t)low;
-// }
 
 bool is_in_vector(std::vector<int>& vec, int value)
 {
