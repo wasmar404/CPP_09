@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:31:24 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/19 15:04:04 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/19 18:01:37 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ class PmergeMe
         int vector_comparisons;
         int deque_comparisons;   
     public:
+        PmergeMe();                         
+        PmergeMe(const PmergeMe& x);    
+        PmergeMe& operator=(const PmergeMe& x); 
+        ~PmergeMe();                       
+ PmergeMe(const std::vector<int>& init);
+
+ 
         void fill_vector_and_deque(std::vector<int> &input);
          std::vector<int>& getVector() { return vector; }
          std::deque<int>& getdeque() { return deque; }

@@ -6,35 +6,38 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:49:47 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/19 15:13:49 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/19 18:06:56 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-int main(int argc,char **argv)
+int main(int argc, char** argv)
 {
-    PmergeMe pmerge;
-    pmerge.setvec();
-    pmerge.setd();
-	std::vector<int> input;
     if (argc < 2)
     {
-        std::cerr << "Invalid number of argument" << std::endl;
-        return(1);
-    }
-    if(parse_input(argc,argv,input) == false)
-    {
+        std::cerr << "Invalid number of arguments.\nUsage: " << argv[0] << " <list of positive integers>\n";
         return 1;
     }
-    pmerge.fill_vector_and_deque(input);
-    // std::vector<int> sortedd =   pmerge.vector_recursive_sort((pmerge.getVector()));
-    // debug_vector(sortedd);
-    // printf("%d",pmerge.getvector_comparisons());
-    std::deque<int> sortedd =   pmerge.deque_recursive_sort((pmerge.getdeque()));
-    debug_deque(sortedd);
-    printf("%d",pmerge.getdeque_comparisons());
-    return(0); 
+
+    std::vector<int> input;
+    if (!parse_input(argc, argv, input))
+        return 1;
+
+    // Thanks to the non-explicit ctor, this also works: PmergeMe pmerge = input;
+    PmergeMe pmerge(input); // initializes both internal vector & deque and zeros the counters
+
+    // If you want to test vector path instead:
+    // std::vector<int> v_sorted = pmerge.vector_recursive_sort(pmerge.getVector());
+    // debug_vector(v_sorted);
+    // std::cout << pmerge.getvector_comparisons() << std::endl;
+
+    // Deque path (as in your code)
+    std::deque<int> d_sorted = pmerge.deque_recursive_sort(pmerge.getdeque());
+    debug_deque(d_sorted);
+    std::cout << pmerge.getdeque_comparisons() << std::endl;
+
+    return 0;
 }
 bool check_duplicate(const std::vector<int> &x)
 {

@@ -6,12 +6,46 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:31:30 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/19 15:15:58 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/19 18:02:00 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+PmergeMe::PmergeMe()
+    : vector()
+    , deque()
+    , vector_comparisons(0)
+    , deque_comparisons(0)
+{}
 
+// Copy constructor
+PmergeMe::PmergeMe(const PmergeMe& x)
+    : vector(x.vector)
+    , deque(x.deque)
+    , vector_comparisons(x.vector_comparisons)
+    , deque_comparisons(x.deque_comparisons)
+{}
+
+PmergeMe& PmergeMe::operator=(const PmergeMe& x)
+{
+    if (this != &x)
+    {
+        vector = x.vector;
+        deque  = x.deque;
+        vector_comparisons = x.vector_comparisons;
+        deque_comparisons  = x.deque_comparisons;
+    }
+    return *this;
+}
+PmergeMe::~PmergeMe()
+{
+}
+PmergeMe::PmergeMe(const std::vector<int>& init)
+    : vector(init.begin(), init.end())
+    , deque(init.begin(),  init.end())
+    , vector_comparisons(0)
+    , deque_comparisons(0)
+{}
 /////////////////////////////////////VECTOR///////////////////////////////////////////////////////////////////////
 std::vector<int> PmergeMe::vector_recursive_sort(std::vector<int> &vec)
 {
