@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:31:30 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/19 18:02:00 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/19 18:36:12 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@ PmergeMe::PmergeMe()
     , deque()
     , vector_comparisons(0)
     , deque_comparisons(0)
+    , input_size(0)
 {}
 
-// Copy constructor
 PmergeMe::PmergeMe(const PmergeMe& x)
     : vector(x.vector)
     , deque(x.deque)
     , vector_comparisons(x.vector_comparisons)
     , deque_comparisons(x.deque_comparisons)
+    , input_size(x.input_size)
 {}
 
 PmergeMe& PmergeMe::operator=(const PmergeMe& x)
@@ -34,6 +35,7 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& x)
         deque  = x.deque;
         vector_comparisons = x.vector_comparisons;
         deque_comparisons  = x.deque_comparisons;
+        input_size = x.input_size;
     }
     return *this;
 }
@@ -45,7 +47,9 @@ PmergeMe::PmergeMe(const std::vector<int>& init)
     , deque(init.begin(),  init.end())
     , vector_comparisons(0)
     , deque_comparisons(0)
-{}
+{
+    input_size = (int)vector.size();
+}
 /////////////////////////////////////VECTOR///////////////////////////////////////////////////////////////////////
 std::vector<int> PmergeMe::vector_recursive_sort(std::vector<int> &vec)
 {
@@ -195,3 +199,10 @@ int calculate_jacobthal_num(int x)
     }
     return(answer);
 }
+std::vector<int>& PmergeMe::getVector() { return vector; }
+std::deque<int>& PmergeMe::getdeque() { return deque; }
+int PmergeMe::getvector_comparisons(){return vector_comparisons;}
+int PmergeMe::getdeque_comparisons(){return deque_comparisons;}
+int PmergeMe::getinputsize(){return input_size;};
+void PmergeMe::setvector(std::vector<int> vec){ vector = vec;}
+void PmergeMe::setdeque(std::deque<int> deq){deque =deq; }

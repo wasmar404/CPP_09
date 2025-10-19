@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:49:47 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/19 18:06:56 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/19 18:38:22 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(int argc, char** argv)
 {
     if (argc < 2)
     {
-        std::cerr << "Invalid number of arguments.\nUsage: " << argv[0] << " <list of positive integers>\n";
+        std::cerr << "Invalid number of arguments.\n";
         return 1;
     }
 
@@ -24,18 +24,28 @@ int main(int argc, char** argv)
     if (!parse_input(argc, argv, input))
         return 1;
 
-    // Thanks to the non-explicit ctor, this also works: PmergeMe pmerge = input;
-    PmergeMe pmerge(input); // initializes both internal vector & deque and zeros the counters
-
-    // If you want to test vector path instead:
-    // std::vector<int> v_sorted = pmerge.vector_recursive_sort(pmerge.getVector());
-    // debug_vector(v_sorted);
-    // std::cout << pmerge.getvector_comparisons() << std::endl;
-
-    // Deque path (as in your code)
-    std::deque<int> d_sorted = pmerge.deque_recursive_sort(pmerge.getdeque());
-    debug_deque(d_sorted);
-    std::cout << pmerge.getdeque_comparisons() << std::endl;
+    PmergeMe pmerge(input);
+    printf("Before: ");
+    debug_vector(pmerge.getVector());
+    
+    clock_t start = clock();
+    std::vector<int> sorted_vec = pmerge.vector_recursive_sort(pmerge.getVector());
+	clock_t end = clock();
+	double vector_time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
+    pmerge.setvector(sorted_vec);
+    
+    start = clock();
+    std::deque<int> sorted_deq = pmerge.deque_recursive_sort(pmerge.getdeque());
+    end = clock();
+	double deque_time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
+    
+    printf("After: ");
+    debug_vector(pmerge.getVector());
+    printf("Time to process a range of %d elements with std::vector %f\n",pmerge.getinputsize(),vector_time);
+    printf("Time to process a range of %d elements with std::deque %f\n",pmerge.getinputsize(),deque_time);
+    
+    // printf("Number of Comparisons for vector %d\n",pmerge.getvector_comparisons());
+    // printf("Number of Comparisons for deque %d\n",pmerge.getdeque_comparisons());
 
     return 0;
 }
@@ -94,5 +104,4 @@ bool parse_input(int ac, char **av,std::vector<int>  &input)
         return false;
     return true;
 }
-
-			
+	

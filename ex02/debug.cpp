@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 16:02:26 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/18 16:03:27 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/19 18:20:28 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void debug_deque(std::deque<int> debug)
 
 void debug_vector(std::vector<int> debug)
 {
-    printf("----------Vector-------------\n");
     for(size_t j = 0;j < debug.size();j++)
     {
-        printf("%d\n",debug[j]);
-    }  
+        printf("%d ",debug[j]);
+    }
+    printf("\n");
 }
 void debug_pairs(std::vector<std::pair<int,int> > &pairs)
 {

@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:31:24 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/19 18:01:37 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/19 18:38:04 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,30 @@
 #include <stdio.h>
 #include <cctype>
 #include <deque>
-#include <utility> //std::pair
-//Orthodoc Canonical Form !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#include <utility>
 class PmergeMe
 {
 	  private:
         std::vector<int>	vector;
 		std::deque<int>		deque;
         int vector_comparisons;
-        int deque_comparisons;   
+        int deque_comparisons;
+        int input_size;
+   
     public:
         PmergeMe();                         
         PmergeMe(const PmergeMe& x);    
         PmergeMe& operator=(const PmergeMe& x); 
         ~PmergeMe();                       
- PmergeMe(const std::vector<int>& init);
+        PmergeMe(const std::vector<int>& init);
 
- 
-        void fill_vector_and_deque(std::vector<int> &input);
-         std::vector<int>& getVector() { return vector; }
-         std::deque<int>& getdeque() { return deque; }
-
-         int getvector_comparisons(){return vector_comparisons;}
-         int getdeque_comparisons(){return deque_comparisons;}
-
-         void setvec(){ vector_comparisons = 0;}
-         void setd(){ deque_comparisons = 0;}
-         
-     
-
+         std::vector<int>& getVector();
+         std::deque<int>& getdeque();
+         int getvector_comparisons();
+         int getdeque_comparisons();
+         int getinputsize();
+         void setvector(std::vector<int> vec);
+         void setdeque(std::deque<int> deq);
 
         void add_to_deque_pair(std::deque<std::pair<int, int> > &pairs,std::deque<int> &deq);
         void push_to_main_pend(std::deque<int> &main, std::deque<int> &pend,std::deque<std::pair<int, int> > &pairs);
@@ -63,7 +58,8 @@ class PmergeMe
         void add_to_vector_pair(std::vector<std::pair<int,int> >  &pairs,std::vector<int> &vec);
         void push_to_main_pend(std::vector<int> &main,std::vector<int> &pend,std::vector<std::pair<int,int> > &pairs);
         void sort_the_pend(std::vector<int> &main,std::vector<int> &pend,std::vector<int> &sorted_main,std::vector<int> &sorted_pend);void generate_insertion_sequence(std::vector<int>& pend_vec,std::vector<int> &j_seq ,std::vector<int> &order);
-    
+
+        void fill_vector_and_deque(std::vector<int> &input);
 };
 void debug_deque(std::deque<int> debug);
 void debug_vector(std::vector<int> debug);
