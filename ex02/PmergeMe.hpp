@@ -6,7 +6,7 @@
 /*   By: wasmar <wasmar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 15:31:24 by wasmar            #+#    #+#             */
-/*   Updated: 2025/10/18 16:27:20 by wasmar           ###   ########.fr       */
+/*   Updated: 2025/10/19 15:04:04 by wasmar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,15 @@ class PmergeMe
          void setd(){ deque_comparisons = 0;}
          
      
-    void insert_d(std::deque<int>& pend_vec,std::deque<int> &main_vec);
-    std::deque<int> deque_recursive_sort(std::deque<int> &vec);
-    int binary_search_vec(std::deque<int> &vec, int value, int high);
 
+
+        void add_to_deque_pair(std::deque<std::pair<int, int> > &pairs,std::deque<int> &deq);
+        void push_to_main_pend(std::deque<int> &main, std::deque<int> &pend,std::deque<std::pair<int, int> > &pairs);
+        void sort_the_pend(std::deque<int> &main, std::deque<int> &pend,std::deque<int> &sorted_main, std::deque<int> &sorted_pend);
+        int  binary_search_deq(std::deque<int> &deq, int value, int high);
+        void generate_insertion_sequence(std::deque<int> &pend_deq,std::deque<int> &j_seq, std::deque<int> &order);
+        void insert_deque(std::deque<int>& pend_deq,std::deque<int> &main_deq);
+        std::deque<int> deque_recursive_sort(std::deque<int> &deq);
 
         std::vector<int>  vector_recursive_sort(std::vector<int> &vec);
         int binary_search_vec(std::vector<int> &vec, int value, int high);
