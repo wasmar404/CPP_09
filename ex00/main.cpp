@@ -21,7 +21,7 @@ bool split_lines(const std::string& line,std::string& date,std::string& value,co
     return(true);
 }
 
- std::string trim1(std::string& line) 
+std::string trim1(const std::string& line)
 {
     std::size_t a = 0;
     std::size_t b = line.size();
@@ -52,9 +52,8 @@ static int daysInMonth(int year, int month) {
     }
     return days[month - 1];
 }
-bool isValidDate(std::string& line) 
+bool isValidDate(const std::string& line)
 {
-
     std::size_t i = 0;
     if (line.size() != 10)
         return false;
@@ -92,15 +91,14 @@ int main(int ac, char **av)
 
     try {
         BitcoinExchange btc;
-        std::string file = av[1];
 
-        btc.load_data(file);
-
-        std::cout << " Loaded data:\n";
-        btc.print_data();
+        btc.load_data("data.csv");
+        btc.processInput(av[1]);
     }
     catch (const std::exception& e)
     {
-        std::cerr << "Error: " << e.what() << "\n";
+        std::cerr << "Error: " << e.what() << std::endl;
+        return 1;
     }
+    return 0;
 }

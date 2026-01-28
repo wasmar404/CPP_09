@@ -29,13 +29,15 @@ class BitcoinExchange
         BitcoinExchange& operator=(const BitcoinExchange& x);
         ~BitcoinExchange();
         
-        void load_data(std::string& file_path);
+        void load_data(const std::string& file_path);
+        void processInput(const std::string& input_file);
+        double getExchangeRate(const std::string& date) const;
         void print_data() const;
 
 };
 
-bool split_lines(const std::string& line,std::string& date,std::string& value,const std::string& delim);
- std::string trim1(std::string& line);
-bool isValidDate(std::string& line);
+bool split_lines(const std::string& line, std::string& date, std::string& value, const std::string& delim);
+std::string trim1(const std::string& line);
+bool isValidDate(const std::string& line);
 
 #endif
